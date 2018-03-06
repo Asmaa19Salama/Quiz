@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public boolean checkBox_spices, checkBox_whiteSauce;
-    public boolean dessert, coffee;
+    public boolean checkBox_presentPerfect, checkBox_for, checkBox_passive;
+    public boolean radio_pastVerb, radio_always;
+    public String readText;
+
+    public int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,66 +25,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void submitOrder(View view) {
-        CheckBox check_spices = (CheckBox) findViewById(R.id.checkbox_spices);
-        checkBox_spices = check_spices.isChecked();
+    public void submitTest(View view) {
 
-        CheckBox check_whiteSauce = (CheckBox) findViewById(R.id.checkbox_white_sauce);
-        checkBox_whiteSauce = check_whiteSauce.isChecked();
+        CheckBox check_1 = (CheckBox) findViewById(R.id.checkbox_presentperfect);
+        checkBox_presentPerfect = check_1.isChecked();
 
-        RadioButton radioDessert = (RadioButton) findViewById(R.id.radio_yes);
-        dessert = radioDessert.isChecked();
+        CheckBox check_2 = (CheckBox) findViewById(R.id.checkbox_for);
+        checkBox_for = check_2.isChecked();
 
-        RadioButton coffeeDessert = (RadioButton) findViewById(R.id.radio_yes_coffee);
-        coffee = radioDessert.isChecked();
+        CheckBox check_3 = (CheckBox) findViewById(R.id.checkbox_passive);
+        checkBox_passive = check_3.isChecked();
 
-        TextView mealField = (EditText) findViewById(R.id.meal_field);
-        String nameOfmeal = mealField.getText().toString();
+        RadioButton radio_past = (RadioButton) findViewById(R.id.radio_no);
+        radio_pastVerb = radio_past.isChecked();
 
-        String result = createOrderSummary(nameOfmeal, checkBox_spices, checkBox_whiteSauce, dessert, coffee);
+        ///
+        RadioButton radio_last = (RadioButton) findViewById(R.id.radio_yes_always);
+        radio_always = radio_last.isChecked();
+
+        TextView readField = (EditText) findViewById(R.id.read_field);
+        readText = readField.getText().toString();
+
+        score = calculateScore(readText, checkBox_presentPerfect, checkBox_for, checkBox_passive, radio_pastVerb, radio_always);
+
+        String result = "You scored " + score + "%.\nThanks for taking the test :D";
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT,"Meal Order of: " + nameOfmeal);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Score of the test :) ");
         intent.putExtra(Intent.EXTRA_TEXT, result);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
 
-    public String createOrderSummary(String meal, boolean checkSpices, boolean checkWhiteSauce, boolean dessert, boolean coffee){
-        String textMessage = "Name of meal: " + meal ;
+    public int calculateScore(String read, boolean checkPresentPerfect, boolean checkFor, boolean checkPassive, boolean radio_pastVerb, boolean radio_always){
 
-        if (checkBox_spices){
-            textMessage += "\n- with spices.";
+        if (checkBox_presentPerfect && checkBox_passive && !checkBox_for){
+            score += 25;
         }
-        else {
-            textMessage += "\n- no spices.";
+        else if (checkBox_passive && !checkBox_presentPerfect) {
+            score += 10;
         }
-
-        if (checkBox_whiteSauce){
-            textMessage += "\n- with white sauce.";
-        }
-        else {
-            textMessage += "\n- no white sauce.";
+        else if (!checkBox_passive && checkBox_presentPerfect) {
+            score += 10;
         }
 
-        if (dessert){
-            textMessage += "\n- with our dessert.";
-        }
-        else {
-            textMessage += "\n- no dessert.";
+        if (radio_pastVerb){
+            score += 25;
         }
 
-        if (coffee){
-            textMessage += "\n- with coffee.";
-        }
-        else {
-            textMessage += "\n- no coffee.";
+
+        if (read.equalsIgnoreCase("read")){
+            score += 25;
         }
 
-        textMessage += "\n\tThank you :)";
-        return textMessage;
+        if (radio_always){
+            score += 25;
+        }
+
+        return score;
     }
 
 

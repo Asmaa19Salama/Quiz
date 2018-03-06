@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/grey"
-    tools:context="com.example.android.quiz.MainActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="16dp"
         android:orientation="vertical">
 
@@ -18,65 +16,56 @@
             android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order your meal :)"
+            android:text="Test your English Grammar:)"
             android:textSize="24sp"
             android:textColor="@android:color/white" 
             android:textStyle="italic"
             android:layout_centerVertical="true"/>
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/emoji"
+            android:src="@drawable/emoji_smile"
             android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
-        
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1- Which meal did you choose?"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/meal_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Write your meal"
-        android:inputType="textCapWords"/>
-
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2- Would you like any extra of these?"
+            android:text="1- Choose the right sentences:"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <CheckBox
-            android:id="@+id/checkbox_spices"
+            android:id="@+id/checkbox_presentperfect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Spices."
-            android:textSize="18sp"/>
+            android:text="It's has been a long time since I last visited this city.."
+            android:textSize="16sp"/>
 
         <CheckBox
-            android:id="@+id/checkbox_white_sauce"
+            android:id="@+id/checkbox_for"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="White sauce."
-            android:textSize="18sp" />
+            android:text="I've been looking for an experienced developer for last Monday."
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox_passive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The walls have been painted perfectly."
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3- Do you wanna try our new dessert?"
+            android:text="2- Is 'writed' the past for 'write' ?"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <RadioGroup
@@ -84,7 +73,6 @@
             android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/radio_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yes."
@@ -101,10 +89,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4- Would you like some coffee?"
+            android:text="3- Write the present perfect tense of the verb 'read':"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/read_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write your meal"
+            android:inputType="textCapWords"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check this sentence:\nI was always at the top of my class."
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -115,29 +119,27 @@
                 android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/radio_yes_always"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes."
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <RadioButton
-                android:id="@+id/radio_no_coffee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/radio_yes_coffee"
                 android:text="No."
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             </RadioGroup>
 
         <Button
-            android:id="@+id/submit_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="16dp"
-            android:text="Order your meal :D"
-            android:onClick="submitOrder"/>
+            android:text="Show your score :D"
+            android:onClick="submitTest"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>
